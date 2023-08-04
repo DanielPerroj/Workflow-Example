@@ -18,5 +18,5 @@ jobs:
 
     - name: Build project
       run: |
-        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF .
+        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF
         make
