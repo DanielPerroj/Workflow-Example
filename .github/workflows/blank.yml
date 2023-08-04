@@ -26,4 +26,4 @@ jobs:
     - name: Run Unit Tests
       run: |
             echo "**********************Executed Unit tests for the software components in the repo!**********************"
-            ctest --verbose --debug ${{shell=True, check=True}}
+            ctest --verbose --debug shell=True, check=True
