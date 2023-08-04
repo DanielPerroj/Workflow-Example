@@ -16,7 +16,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake make
-        curl -sSL https://github.com/espressif/crosstool-NG/releases/download/esp-2021r1/ct-ng.2021.05.16.tar.xz | sudo tar -xJ -C /opt/
+        curl -sSL https://github.com/DanielPerroj/Workflow-Example/tree/main | sudo tar -xJ -C /opt/
         sudo mv /opt/crosstool-NG-2021.05.16 /opt/crosstool-ng
         export PATH=$PATH:/opt/crosstool-ng/bin
 
