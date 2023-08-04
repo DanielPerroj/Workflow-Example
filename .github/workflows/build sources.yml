@@ -1,25 +1,31 @@
-name: Build Project
+name: Compile Firmware
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        shell: bash
     steps:
-       - name: Checkout code
-         uses: actions/checkout@v2
-         with:
-           repository: DanielPerroj/Workflow-Example
+    - uses: actions/checkout@v2
 
-       - name: Remove CMake cache files and Makefile
-         run: |
+    - name: Run a one-line script
+      run: echo Hello, world!
+      
+    - name: Run a multi-line script
+      run: |
+         echo Add other actions to build,
+         echo test, and deploy your project.
+
+    - name: Remove CMake cache files and Makefile
+      run: |
              rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
 
-       - name: Build project
-         run: |
+    - name: Build project
+      run: |
              cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF
     
