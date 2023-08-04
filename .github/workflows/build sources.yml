@@ -3,22 +3,23 @@ name: Build Project
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout
-      with: 
-        repository: ''
+       - name: Checkout code
+         uses: actions/checkout@v2
+         with:
+           repository: DanielPerroj/Workflow-Example
 
-    - name: Remove CMake cache files and Makefile
-      run: |
-        rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
+       - name: Remove CMake cache files and Makefile
+         run: |
+             rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
 
-    - name: Build project
-      run: |
-        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF
-        make
+       - name: Build project
+         run: |
+             cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF
+    
