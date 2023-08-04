@@ -10,9 +10,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        path: main
+      uses: actions/checkout
+      with: 
+        repository: ''
 
     - name: Remove CMake cache files and Makefile
       run: |
