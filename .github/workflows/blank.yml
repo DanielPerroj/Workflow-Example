@@ -25,5 +25,5 @@ jobs:
              rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
     - name: Run Unit Tests
       run: |
-            echo **********************Executed Unit tests for the software components in the repo!**********************
+            echo "**********************Executed Unit tests for the software components in the repo!**********************"
             ctest --verbose --debug', shell=True, check=True
