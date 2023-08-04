@@ -22,7 +22,8 @@ jobs:
          echo test, and deploy your project.
     - name: Remove CMake cache files and Makefile
       run: |
-             rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
+             rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/ shell=True, check=True
+             cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF -DPRODUCT_CONFIGURATION=DAY_ZERO_GEN1 -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake shell=True, check=True
     - name: Run Unit Tests
       run: |
             echo "**********************Executed Unit tests for the software components in the repo!**********************"
