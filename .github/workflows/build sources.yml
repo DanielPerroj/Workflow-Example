@@ -1,4 +1,4 @@
-name: Compile Firmware
+name: Build Project
 
 on:
   push:
@@ -12,26 +12,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up toolchain
+    - name: Remove CMake cache files and Makefile
       run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake make
-        curl -sSL https://github.com/DanielPerroj/Workflow-Example/tree/main | sudo tar -xJ -C /opt/
-        sudo mv /opt/crosstool-NG-2021.05.16 /opt/crosstool-ng
-        export PATH=$PATH:/opt/crosstool-ng/bin
-
-    - name: Compile firmware for Day Zero Gen1
-      run: |
-        echo "**********************Compiling firmware for Day Zero Gen1 (CC3220SF)**********************"
         rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
-        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF -DPRODUCT_CONFIGURATION=DAY_ZERO_GEN1 -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake .
-        make -k -j 1
-        echo "**********************Finished compiling firmware for Day Zero Gen1**********************"
 
-    - name: Compile firmware for Air Purifier Gen1
+    - name: Build project
       run: |
-        echo "**********************Compiling firmware for Air Purifier Gen1 (CC3220SF)**********************"
-        rm -rf CMakeCache.txt cmake_install.cmake Makefile CMakeFiles/
-        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF -DPRODUCT_CONFIGURATION=AIR_PURIFIER_GEN1 -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake .
-        make -k -j 1
-        echo "**********************Finished compiling firmware for Air Purifier Gen1**********************"
+        cmake -G "Unix Makefiles" -DPROD=OFF -DDEBUG=OFF .
+        make
