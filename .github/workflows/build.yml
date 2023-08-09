@@ -15,13 +15,23 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      # Checks out repository under $GITHUB_WORKSPACE, so job can access it
-     # - uses: actions/checkout@v3
+     - name: performs Integration Tests
+         
+       id: run_integration_tests
+       shell: bash
+    
+       run: 
+              echo"**********************Integration Test is executed!**********************"
+              echo "::set-env name=pathToTestFile::${{env.root_dir}}/scripts/integration_tests/"
+  
+              python run_test.py
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+              echo::"set-env name=pathToIntTestResult::${{env.root_dir}}/reports/integration_tests/"
+          
+              mkdir -p ${{env.pathToIntTestResult}} 
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+              echo::"set-env name=xmlFile::${{env.root_dir}}/scripts/integration_tests/output.xml/"
+
+              echo::"set-env name=reportHtmlFile::${{env.root_dir}}/scripts/integration_tests/report.html/"
+
+              echo::"set-env name=logHtmlFile::${{env.root_dir}}/scripts/integration_tests/log.html/"
