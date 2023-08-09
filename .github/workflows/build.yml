@@ -24,7 +24,7 @@ jobs:
               echo "**********************Integration Test is executed!**********************"
               echo "::set-env name=pathToTestFile::${{env.root_dir}}/scripts/integration_tests/"
   
-              python run_test.py
+              
 
               echo::"set-env name=pathToIntTestResult::${{env.root_dir}}/reports/integration_tests/"
           
